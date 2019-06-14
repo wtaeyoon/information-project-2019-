@@ -1,0 +1,34 @@
+import random as r
+import numpy as np
+ 
+#조건 입력 받기
+a_1, b_1, c_1 = map(float, input('첫번째 일차부등식의 x의 계수, y의 계수, 상수항을 입력해주세요! (우변은 0으로, 부등호는 좌변이 더 큰 상태를 맞춰주세요!) : ').split())
+a_2, b_2, c_2 = map(float, input('두번째 일차부등식의 x의 계수, y의 계수, 상수항을 입력해주세요! (우변은 0으로, 부등호는 좌변이 더 큰 상태를 맞춰주세요!) : ').split())
+a_3, b_3, c_3 = map(float, input('세번째 일차부등식의 x의 계수, y의 계수, 상수항을 입력해주세요! (우변은 0으로, 부등호는 좌변이 더 큰 상태를 맞춰주세요!) : ').split())
+ 
+#일차연립방정식의 해 구하기
+#1,2번 방정식의 해
+x_1 = (b_1*c_2 - b_2*c_1)/(b_2*a_1 - a_2*b_1)
+y_1 = (c_2*a_1 - c_1*a_2)/(a_2*b_1 - a_1*b_2)
+#1,3번 방정식의 해
+x_2 =(b_1*c_3 - b_3*c_1)/(b_3*a_1 - a_3*b_1)
+y_2 =(c_3*a_1 - c_1*a_3)/(a_3*b_1 - a_1*b_3)
+#2,3번 방정식의 해
+x_3=(b_3*c_2 - b_2*c_3)/(b_2*a_3 - a_2*b_3)
+y_3=(c_2*a_3 - c_3*a_2)/(a_2*b_3 - a_3*b_2)
+ 
+#(아이디어)
+a=max(x_1,x_2,x_3)
+b=min(x_1,x_2,x_3)
+c=max(y_1,y_2,y_3)
+d=min(y_1,y_2,y_3)
+ 
+randompoint=[]
+conditionpoint=[]
+ 
+#구하려는 도형을 포함하는 직사각형에 0.01 단위로 랜덤점 1000개 뿌리기
+for i in range(1000):
+    randompoint += [0.01*random.randint(100*int(b),100*(int(a)+1)), 0.01*random.randint(100*int(d),100*(int(c)+1))] 
+ 
+for i in range(len(randompoint)+1):
+    if a_1*randompoint[0]+b_1*randompoint[1]+c_1>0 & a_2*randompoint[0]+b_2*randompoint[1]+c_2>0 & a_3*randompoint[0]+b_3*randompoint[1]+c_3>0:
