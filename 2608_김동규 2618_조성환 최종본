@@ -98,6 +98,6 @@ for i in range(len(conditionpoint)):
 
  
 
-plt.piplot(list_x ,list_y)
+plt.scatter(list_x ,list_y)
 
 plt.show()
